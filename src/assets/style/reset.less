@@ -1,0 +1,74 @@
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  color: #303133;
+}
+
+.border {
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+}
+
+.button {
+  appearance: none;
+  border: 1px solid #8e24aa;
+  padding: 7px 15px;
+  outline: none;
+  color: #8e24aa;
+  transition: .1s;
+  background: #fff;
+  &:hover {
+    background: #8e24aa;
+    border-color: #8e24aa;
+    color: #fff;
+  }
+  &:active {
+    background: #5c007a;
+    border-color: #5c007a;
+    color: #fff;
+  }
+  &[disabled] {
+    color: #c158dc;
+    background-color: #f3e5f5;
+    border-color: #f3e5f5;
+    cursor: not-allowed;
+  }
+}
+
+.tooltip {
+  &:after {
+    content: attr(data-tips);
+    position: absolute;
+    top: 1.5rem;
+    display: block;
+    color: #fff;
+    background: #333;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: .6rem;
+    visibility: hidden;
+    transition: .3s;
+    opacity: 0;
+  }
+  &:hover {
+    &:after {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
