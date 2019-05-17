@@ -1,19 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "9b26fcce56365c10d941",
-    "url": "/css/app.c10831a0.css"
+    "revision": "27378d56b0dfd83b6058",
+    "url": "/css/app.e98b63cc.css"
   },
   {
-    "revision": "9b26fcce56365c10d941",
-    "url": "/js/app.c39c4e8a.js"
+    "revision": "27378d56b0dfd83b6058",
+    "url": "/js/app.da75249f.js"
   },
   {
-    "revision": "f175eba8394ce7de5ec2",
+    "revision": "cb90609f4b89fee25164",
+    "url": "/js/chunk-d72b8de6.c5f29e96.js"
+  },
+  {
+    "revision": "687eba84cb1fc861ce27",
     "url": "/css/chunk-vendors.be1df67f.css"
   },
   {
-    "revision": "f175eba8394ce7de5ec2",
-    "url": "/js/chunk-vendors.29a3ee29.js"
+    "revision": "687eba84cb1fc861ce27",
+    "url": "/js/chunk-vendors.0aaa766e.js"
   },
   {
     "revision": "7980a6361c25b4665dbbe92d4488783c",
@@ -56,16 +60,16 @@ self.__precacheManifest = [
     "url": "/fonts/fa-brands-400.b7d071b9.ttf"
   },
   {
-    "revision": "f14c3b2ff7c821a4c838debbffd6ad2d",
-    "url": "/fonts/fa-solid-900.f14c3b2f.ttf"
+    "revision": "da8a235bb207c74eea21507f3a86a53b",
+    "url": "/img/fa-regular-400.da8a235b.svg"
   },
   {
     "revision": "e2675a616b68f446fa6284c111554c7f",
     "url": "/fonts/fa-solid-900.e2675a61.eot"
   },
   {
-    "revision": "da8a235bb207c74eea21507f3a86a53b",
-    "url": "/img/fa-regular-400.da8a235b.svg"
+    "revision": "f14c3b2ff7c821a4c838debbffd6ad2d",
+    "url": "/fonts/fa-solid-900.f14c3b2f.ttf"
   },
   {
     "revision": "38975343b586296e9b73e6b56cc3ec5d",
@@ -76,19 +80,11 @@ self.__precacheManifest = [
     "url": "/img/fa-solid-900.7726a281.svg"
   },
   {
-    "revision": "4a4d0464a9860c521b9002d227c41767",
-    "url": "/img/cover.4a4d0464.jpg"
-  },
-  {
     "revision": "85ae145a7f4873de0c01914515fbbd07",
     "url": "/img/logo-h.85ae145a.png"
   },
   {
-    "revision": "b6e338a178be9a7d7295181f0a9a066d",
-    "url": "/img/logo.b6e338a1.png"
-  },
-  {
-    "revision": "a7a6d792020606298f736e175bdaee12",
+    "revision": "8be3c08fab1e4dbfce2b3eaf047207b4",
     "url": "/index.html"
   },
   {
