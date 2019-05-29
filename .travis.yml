@@ -1,0 +1,7 @@
+after_success:
+- ssh root@106.52.126.225 'cd /home/www/jrainlau.github.io && git pull'
+before_install:
+- openssl aes-256-cbc -K $encrypted_e74a6dfb14a7_key -iv $encrypted_e74a6dfb14a7_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 106.52.126.225\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
