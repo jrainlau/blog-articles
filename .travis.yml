@@ -1,3 +1,4 @@
+script: true
 after_success:
 - ssh root@106.52.126.225 'cd /home/www/jrainlau.github.io && git pull'
 before_install:
