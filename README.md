@@ -1,30 +1,21 @@
-# JRAIN:BLOG
+# my-blog
 
-This is my personal blog bases on [Github Issues](https://github.com/jrainlau/jrainlau.github.io/issues), it loads data from the [Github API V3](https://developer.github.com/v3/) and [Github API V4](https://developer.github.com/v4/).
+## Project setup
+```
+npm install
+```
 
-## Development
-1. Clone this repository:
-   ```
-    git clone https://github.com/jrainlau/jrainlau.github.io.git
-   ```
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-2. Checkout the `dev` branch:
-   ```
-    git checkout dev
-   ```
+### Compiles and minifies for production
+```
+npm run build
+```
 
-3. Install dependencies:
-   ```
-    npm install
-   ```
-
-4. Run in dev mode
-   ```
-   npm run serve
-   ```
-
-
-> PS: You can change the owner and repo in `/src/store.js` from the line 8 to load your own repo.
-
-## Lisence
-MIT
+### Lints and fixes files
+```
+npm run lint
+```

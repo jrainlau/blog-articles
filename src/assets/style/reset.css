@@ -1,0 +1,83 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  color: #333;
+  overflow: hidden;
+}
+.view {
+  box-sizing: border-box;
+  margin-top: 60px;
+  width: 100%;
+  height: 100%;
+  height: calc(40%);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+}
+.border {
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.08);
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+}
+::placeholder {
+  color: #c0c4cc;
+}
+input {
+  appearance: none;
+  outline: none;
+  padding: 10px 15px;
+  border: 1px solid #dcdfe6;
+  border-radius: 0;
+  background: #fff;
+  color: #606266;
+}
+input:focus {
+  border: 1px solid #8e24aa;
+}
+button {
+  appearance: none;
+  border: 1px solid #8e24aa;
+  padding: 10px 15px;
+  outline: none;
+  color: #8e24aa;
+  transition: .1s;
+  background: #fff;
+}
+button:hover {
+  background: #8e24aa;
+  border-color: #8e24aa;
+  color: #fff;
+}
+button:active {
+  background: #5c007a;
+  border-color: #5c007a;
+  color: #fff;
+}
+button[disabled] {
+  color: #a170ad;
+  background-color: #f3e5f5;
+  border-color: #f3e5f5;
+  cursor: not-allowed;
+}
+.mobile-only {
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+}
+@media only screen and (max-width: 450px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
