@@ -15,8 +15,11 @@
         <div class="header-menu-item search">
           <input type="text" class="show-menu" placeholder="Search" v-model="keyword" @keyup.enter="search">
         </div>
-        <div class="header-menu-item" id="header-menu-btn" @click="loginWithGithub" v-show="!userInfo.login">
+        <!-- <div class="header-menu-item" id="header-menu-btn" @click="loginWithGithub" v-show="!userInfo.login">
           Login with Github
+        </div> -->
+        <div class="header-menu-item" id="header-menu-btn" @click="login" v-show="!userInfo.login">
+          Login
         </div>
         <div class="header-menu-item signout" v-show="userInfo.login" @click="signout">
           <i class="fas fa-sign-out-alt"></i>
@@ -67,6 +70,9 @@ export default {
   },
   methods: {
     ...mapActions(['githubAuth']),
+    login () {
+      this.$emit('update:showAuth', true)
+    },
     signout () {
       this.$emit('signout')
     },
