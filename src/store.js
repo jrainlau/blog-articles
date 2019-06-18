@@ -6,19 +6,21 @@ import { GetArticles, GetUserInfo } from './gglQueries'
 
 const API_DOMAIN = 'https://api.github.com'
 const REPO_URL = `${API_DOMAIN}/repos/jrainlau/jrainlau.github.io`
-const SERVER = 'https://jrainlau.com/api'
-// const SERVER = 'http://localhost:3000'
+const SERVER = 'https://api.jrainlau.now.sh/github'
+// const SERVER = 'http://localhost:3000/github'
 
 export const $fetch = ({ url, method = 'get', data, headers = {} }) => {
-  return axios({
+  const option = {
     url,
     method,
-    data,
+    ...(method === 'post' ? { data } : null),
+    ...(method === 'get' ? { params: data } : null),
     headers: {
-      'Authorization': localStorage.getItem('github_token'),
+      ...(localStorage.getItem('github_token') ? { 'Authorization': localStorage.getItem('github_token') } : null),
       ...headers
     }
-  }).then(({ status, data }) => {
+  }
+  return axios(option).then(({ status, data }) => {
     return {
       status,
       data
@@ -237,8 +239,7 @@ export default new Vuex.Store({
     },
     async githubAuth (_, code) {
       const { data } = await $fetch({
-        method: 'post',
-        url: `${SERVER}/github/oauth`,
+        url: SERVER,
         data: {
           code
         }
