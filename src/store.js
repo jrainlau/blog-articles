@@ -45,7 +45,8 @@ export default new Vuex.Store({
     timeline ({ articles }) {
       const tl = {}
       articles.forEach(article => {
-        const date = article.date.replace(/-\d{2}$/, '')
+        const date = article.date.replace(/-\d{1,2}$/, '')
+        console.log(date)
         if (!tl[date]) {
           tl[date] = []
         }

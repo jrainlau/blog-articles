@@ -69,15 +69,21 @@ export default {
     font-weight: normal;
     border-bottom: 1px solid @firstBorderColor;
     color: @regularFontColor;
+    .label {
+      margin-bottom: 0;
+    }
   }
   &-list {
     padding: @gapOuter;
+    padding-bottom: @gapInner;
     padding-right: 0;
   }
 }
 
 .label {
+  display: inline-block;
   margin-right: @gapInner;
+  margin-bottom: @gapInner;
   padding: 2px @gapInner;
   color: #fff;
   border-radius: 3px;
