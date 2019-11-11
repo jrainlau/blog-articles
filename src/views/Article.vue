@@ -1,7 +1,8 @@
 <template>
-  <div class="view">
+  <div ref="view" class="view">
     <Skeleton type="article" v-if="!article" />
     <div class="article" v-if="article">
+      <Catelog class="article-catelog" :headings="headings" :curHeading="curHeading" :box="$refs['view']" />
       <section class="article-title">
         <h1>{{article.title}}</h1>
         <div>
@@ -10,7 +11,7 @@
           <span v-for="(label, i) in article.labels" :key="i" class="label" :style="`background: #${label.color}`">{{label.name}}</span>
         </div>
       </section>
-      <section class="article-content markdown" v-html="$options.filters.markify(article.content)"></section>
+      <section class="article-content markdown" ref="article" v-html="$options.filters.markify(article.content)"></section>
       <section class="article-comments">
         <div class="article-comments-reactions border">
           <div v-if="article.praise">
@@ -42,9 +43,11 @@ import hljs from 'highlight.js'
 import Comments from '@/components/Comments'
 import About from '@/components/About'
 import Skeleton from '@/components/Skeleton'
+import Catelog from '@/components/Catelog'
 import swal from 'sweetalert2'
 
 const renderer = new marked.Renderer()
+renderer.heading = (text, level) => `<h${level} id="${text}" data-level="${level}" class="heading heading-${level}">${text}</h${level}>`
 renderer.link = (href, title, text) => `<a target="_blank" href="${href}" title="${title}">${text}</a>`
 renderer.image = (href, title, text) => `<a target="_blank" href="${href}" title="${title}"><image src="${href}" /></a>`
 
@@ -60,7 +63,7 @@ marked.setOptions({
 })
 
 export default {
-  components: { Comments, About, Skeleton },
+  components: { Comments, About, Skeleton, Catelog },
   filters: {
     markify (str) {
       return marked(str, { renderer })
@@ -71,7 +74,9 @@ export default {
       QR: '',
       articleNumber: '',
       comments: [],
-      praise: []
+      praise: [],
+      headings: [],
+      curHeading: ''
     }
   },
   computed: {
@@ -118,6 +123,13 @@ export default {
         const mainView = document.querySelector('.view')
         mainView.scrollTop = mainView.scrollHeight
       }
+      this.headings = Array.from(this.$refs['article'].querySelectorAll('.heading')).map(heading => ({
+        title: heading.innerText,
+        id: heading.id,
+        level: Number(heading.dataset.level),
+        offsetTop: heading.offsetTop
+      }))
+      this.catelogObserver()
     })
   },
   methods: {
@@ -179,6 +191,35 @@ export default {
       const view = document.querySelector('.view')
       view.scrollTop = view.scrollHeight
       this.comments = comments
+    },
+    catelogObserver () {
+      const view = this.$refs['view']
+      const headingElems = this.headings.map(({ id }) => document.querySelector(`#${id}`))
+      let scrollY = 0
+      let scrollDirec = 'up'
+      const titles = new Set()
+      view.addEventListener('scroll', e => {
+        if (!scrollY) {
+          scrollY = view.scrollTop
+        }
+        let deltaY = scrollY - view.scrollTop
+        if (deltaY > 0) {
+          scrollDirec = 'up'
+        } else {
+          scrollDirec = 'down'
+        }
+
+        headingElems.forEach((elem, index) => {
+          const elemViewTop = elem.offsetTop - 20
+          if (scrollDirec === 'down' && view.scrollTop >= elemViewTop) {
+            titles.add(index)
+          } else if (scrollDirec === 'up' && view.scrollTop <= elemViewTop) {
+            titles.delete(index)
+          }
+        })
+        this.curHeading = [...titles][titles.size - 1]
+        scrollY = view.scrollTop
+      })
     }
   }
 }
@@ -188,6 +229,7 @@ export default {
 @import '../assets/style/variables.less';
 
 .article {
+  position: relative;
   width: 100%;
   max-width: 935px;
   margin: 0 auto;
@@ -197,6 +239,14 @@ export default {
   padding: calc(@gapOuter * 3) 0 @gapOuter 0;
   box-sizing: border-box;
   background: #fff;
+  &-catelog {
+    position: fixed;
+    left: calc(50% + 480px);
+    width: 200px;
+    max-height: 600px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+  }
   &-title {
     margin-bottom: @gapOuter;
     width: 100%;
@@ -268,7 +318,11 @@ export default {
     }
   }
 }
-
+@media only screen and (max-width: 1380px) {
+  .article-catelog {
+    display: none;
+  }
+}
 @media only screen and (max-width: 768px) {
   .article {
     padding: calc(@gapOuter * 3) @gapOuter @gapOuter @gapOuter;
