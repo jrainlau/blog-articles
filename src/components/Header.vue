@@ -82,7 +82,8 @@ export default {
       this.keyword = ''
     },
     loginWithGithub () {
-      location.href = 'https://github.com/login/oauth/authorize?client_id=Iv1.371000f912198076&redirect_uri=https://jrainlau.github.io'
+      const redirectURI = `${location.protocol}//${location.host}`
+      location.href = `https://github.com/login/oauth/authorize?client_id=Iv1.371000f912198076&redirect_uri=${redirectURI}`
     }
   }
 }

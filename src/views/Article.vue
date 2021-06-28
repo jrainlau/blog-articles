@@ -194,7 +194,7 @@ export default {
     },
     catelogObserver () {
       const view = this.$refs['view']
-      const headingElems = this.headings.map(({ id }) => document.querySelector(`#${id}`))
+      const headingElems = this.headings.map(({ id }) => document.getElementById(id))
       let scrollY = 0
       let scrollDirec = 'up'
       const titles = new Set()

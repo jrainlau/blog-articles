@@ -2,11 +2,13 @@
   <div class="timeline border">
     <h3 class="timeline-title">Timeline</h3>
 
-    <div class="timeline-item" v-for="(time, i) in Object.keys(timeline)" :key="i">
-      <div class="timeline-item-date" @click="showDetail(time)">{{time}} ({{timeline[time].length}})</div>
-      <ul class="timeline-item-day" v-show="onShowTime === time">
-        <li class="article" v-for="(article, i) in timeline[time]" :key="i" @click="$emit('toArticle', { number: article.number, title: article.title })">{{article.title}}</li>
-      </ul>
+    <div class="timeline-list">
+      <div class="timeline-item" v-for="(time, i) in Object.keys(timeline)" :key="i">
+        <div class="timeline-item-date" @click="showDetail(time)">{{time}} ({{timeline[time].length}})</div>
+        <ul class="timeline-item-day" v-show="onShowTime === time">
+          <li class="article" v-for="(article, i) in timeline[time]" :key="i" @click="$emit('toArticle', { number: article.number, title: article.title })">{{article.title}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -42,6 +44,10 @@ export default {
 .timeline {
   background: #fff;
   margin-bottom: @gapOuter;
+  &-list {
+    max-height: 50vh;
+    overflow-y: scroll;
+  }
   &-title {
     margin: 0;
     padding: @gapOuter;
